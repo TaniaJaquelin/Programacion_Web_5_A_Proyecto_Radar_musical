@@ -1,0 +1,35 @@
+{
+  "name": "programacion_web_5_a_proyecto_radar_musical",
+  "version": "1.0.0",
+  "description": "\"# Radar Musical\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "tsx watch src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaniaJaquelin/Programacion_Web_5_A_Proyecto_Radar_musical.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TaniaJaquelin/Programacion_Web_5_A_Proyecto_Radar_musical/issues"
+  },
+  "homepage": "https://github.com/TaniaJaquelin/Programacion_Web_5_A_Proyecto_Radar_musical#readme",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "mongoose": "^9.11.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
