@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import catalogRoutes from './catalog.routes';
+import authRoutes from './auth.routes';
 
 const router = Router();
 
@@ -11,7 +12,8 @@ router.get('/health', (req: Request, res: Response) => {
     });
 });
 
-// Catalog routes
+// Main API routes
 router.use('/catalog', catalogRoutes);
+router.use('/auth', authRoutes);
 
 export default router;
