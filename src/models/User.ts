@@ -1,65 +1,58 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "../conf/sequelize.connection";
 
-// Interface for User document
-export interface IUser extends Document {
-    name: string;
-    email: string;
-    password: string;
-    role: 'listener' | 'artist';
-    music_genres: Types.ObjectId[];
-    profile_Picture?: string;
-    bio?: string;
-    active: boolean;
+const sequelize = sequelizeConnection.getSequelize();
+
+export interface IUser extends Model {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  role: "listener" | "artist";
+  profile_Picture?: string;
+  bio?: string;
+  active: boolean;
 }
 
-// Mongoose schema for Users
-const userSchema = new Schema<IUser>(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        role: {
-            type: String,
-            enum: ['listener', 'artist'],
-            default: 'listener'
-        },
-        // Many-to-many relation with MusicGenre table requested by teacher
-        music_genres: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'MusicGenre'
-            }
-        ],
-        profile_Picture: {
-            type: String,
-            default: ''
-        },
-        bio: {
-            type: String,
-            default: ''
-        },
-        // Logical delete
-        active: {
-            type: Boolean,
-            default: true
-        }
+export const User = sequelize.define<IUser>(
+  "User",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        timestamps: true
-    }
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM("listener", "artist"),
+      defaultValue: "listener",
+    },
+    profile_Picture: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    bio: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+  },
+  { timestamps: true },
 );
 
-export const UserModel = model<IUser>('User', userSchema);
+export default User;

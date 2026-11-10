@@ -1,37 +1,27 @@
 import { describe, it, expect, vi } from 'vitest';
 import { Server } from '../src/server';
-import dbConnection from '../src/conf/dbConnection';
+import sequelizeConnection from '../src/conf/sequelize.connection';
 
-// mock routes
-vi.mock('../src/routes/index', () => ({
-    default: vi.fn()
-}));
-
-// explicit mock for server class
-vi.mock('../src/server', () => {
-    const ServerMock = vi.fn();
-    ServerMock.prototype.start = vi.fn();
-    return { Server: ServerMock };
-});
-
-// mock database connection
-vi.mock('../src/conf/dbConnection', () => ({
+vi.mock('../src/server.ts');
+vi.mock('../src/conf/sequelize.connection.ts', () => ({
     default: {
+        getSequelize: vi.fn(() => ({
+            define: vi.fn(() => ({}))
+        })),
         connect: vi.fn().mockResolvedValue(undefined)
     }
 }));
 
 describe('App testing', () => {
-    it('should connect to database and start the server', async () => {
-        const spyDB = vi.spyOn(dbConnection, 'connect');
+    it('should call the server function', async () => {
+        const spyDB = vi.spyOn(sequelizeConnection, 'connect');
 
-        // import app.ts to execute startApp()
-        await import('../src/app');
+        await import('../src/app.ts');
 
         expect(spyDB).toHaveBeenCalledTimes(1);
         expect(Server).toHaveBeenCalledTimes(1);
         expect(Server).toHaveBeenLastCalledWith({
-            port: Number(process.env.PORT) || 3000,
+            port: Number(process.env.PORT),
             routes: expect.any(Function)
         });
         expect(Server.prototype.start).toHaveBeenCalledTimes(1);

@@ -1,40 +1,30 @@
-import express, { Application, Router } from 'express';
-import cors from 'cors';
+import express, { Router, type Express } from 'express';
 
 // interface for the server options
-interface ServerOptions {
+type ServerOptions = {
     port: number;
     routes: Router;
 }
 
 export class Server {
     // attributes
-    public app: Application;
-    private port: number;
-    private routes: Router;
+    private readonly server: Express;
+    private readonly port: number;
+    private readonly routes: Router;
 
     // constructor
     constructor(options: ServerOptions) {
-        this.app = express();
-        this.port = options.port || 3000;
+        this.server = express();
+        this.port = options.port;
         this.routes = options.routes;
-
-        this.middlewares();
-        this.loadRoutes();
     }
 
     // methods
-    private middlewares(): void {
-        this.app.use(cors());
-        this.app.use(express.json());
-    }
-
-    private loadRoutes(): void {
-        this.app.use('/api/v1', this.routes);
-    }
 
     public start(): void {
-        this.app.listen(this.port, () => {
+        this.server.use(express.json());
+        this.server.use('/api/v1', this.routes);
+        this.server.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`);
         });
     }
