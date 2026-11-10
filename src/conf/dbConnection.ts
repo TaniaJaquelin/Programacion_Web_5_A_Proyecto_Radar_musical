@@ -1,24 +1,26 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
+import mysql2 from "mysql2/promise";
+import dotenv from "dotenv";
 dotenv.config();
 
-// get database variables from the file ".env"
-const dbHost = process.env.DB_HOST || 'localhost';
-const dbName = process.env.DB_NAME || 'radar_musical_db';
-const mongoUri = process.env.MONGO_URI || `mongodb://${dbHost}:27017/${dbName}`;
+const { 
+    DB_USER, 
+    DB_PORT, 
+    DB_HOST, 
+    DB_PASSWORD, 
+    DB_NAME 
+} = process.env;
 
-// dbConnection object
-const dbConnection = {
-    connect: async (): Promise<void> => {
-        try {
-            await mongoose.connect(mongoUri);
-            console.log('MongoDB database connected');
-        } catch (error) {
-            console.error('Error connecting to MongoDB:', error);
-            throw error;
-        }
-    }
-};
-
-export default dbConnection;
+export const pool = mysql2.createPool({
+  user: DB_USER!,
+  password: DB_PASSWORD!,
+  host: DB_HOST!,
+  port: Number(DB_PORT),
+  database: DB_NAME!,
+  waitForConnections: true,
+  connectionLimit: 10,
+  maxIdle: 10,
+  idleTimeout: 60000,
+  queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 0,
+});

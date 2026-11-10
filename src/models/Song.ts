@@ -1,56 +1,57 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "../conf/sequelize.connection";
 
-// Interface for Song document
-export interface ISong extends Document {
-    user_id: Types.ObjectId;
-    title: string;
-    music_genre: Types.ObjectId;
-    audio_Url: string;
-    cover_Url?: string;
-    date: Date;
-    active: boolean;
+const sequelize = sequelizeConnection.getSequelize();
+
+export interface ISong extends Model {
+  id: number;
+  user_id: number;
+  title: string;
+  music_genre: number;
+  audio_Url: string;
+  cover_Url?: string;
+  date: Date;
+  active: boolean;
 }
 
-// Mongoose schema for Songs
-const songSchema = new Schema<ISong>(
-    {
-        // Reference to the artist (User) who uploaded the song
-        user_id: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-        title: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        // Reference to MusicGenre table
-        music_genre: {
-            type: Schema.Types.ObjectId,
-            ref: 'MusicGenre',
-            required: true
-        },
-        audio_Url: {
-            type: String,
-            required: true
-        },
-        cover_Url: {
-            type: String,
-            default: ''
-        },
-        date: {
-            type: Date,
-            default: Date.now
-        },
-        active: {
-            type: Boolean,
-            default: true
-        }
+export const Song = sequelize.define<ISong>(
+  "Song",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        timestamps: true
-    }
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    music_genre: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    audio_Url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    cover_Url: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    date: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+  },
+  { timestamps: true },
 );
 
-export const SongModel = model<ISong>('Song', songSchema);
+export default Song;

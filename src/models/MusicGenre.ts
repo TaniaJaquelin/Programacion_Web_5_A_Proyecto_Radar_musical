@@ -1,33 +1,39 @@
-import { Schema, model, Document } from 'mongoose';
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "../conf/sequelize.connection";
 
-// Interface for MusicGenre document
-export interface IMusicGenre extends Document {
-    name: string;
-    description?: string;
-    active: boolean;
+
+const sequelize = sequelizeConnection.getSequelize();
+
+export interface IMusicGenre extends Model {
+  id: number;
+  name: string;
+  description?: string;
+  active: boolean;
 }
 
-// Mongoose schema for music_genres
-const musicGenreSchema = new Schema<IMusicGenre>(
-    {
-        name: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true
-        },
-        description: {
-            type: String,
-            default: ''
-        },
-        active: {
-            type: Boolean,
-            default: true
-        }
+export const MusicGenre = sequelize.define<IMusicGenre>(
+  "MusicGenre",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        timestamps: true
-    }
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    description: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+  },
+  { timestamps: true },
 );
 
-export const MusicGenreModel = model<IMusicGenre>('MusicGenre', musicGenreSchema);
+export default MusicGenre;

@@ -1,24 +1,21 @@
 import dotenv from 'dotenv';
 import { Server } from './server';
-import routes from './routes/index';
-import dbConnection from './conf/dbConnection';
+import { AppRoutes } from './routes/index';
+import sequelizeConnection from './conf/sequelize.connection';
 
 dotenv.config();
 
-const startApp = async (): Promise<void> => {
+const port = Number(process.env.PORT);
+
+async function main() {
     try {
-        // connect to MongoDB
-        await dbConnection.connect();
-
-        // start the Express server
-        const server = new Server({
-            port: Number(process.env.PORT) || 3000,
-            routes: routes
-        });
+        await sequelizeConnection.connect();
+        const server = new Server({ port, routes: AppRoutes.router });
         server.start();
-    } catch (error) {
-        console.error('Failed to start application:', error);
+    } catch (e) {
+        console.log(e)
+        process.exit(1)
     }
-};
+}
 
-startApp();
+main();
