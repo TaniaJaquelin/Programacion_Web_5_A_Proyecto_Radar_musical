@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212;
+    color: #f3f4f6;
+}
+
+.header-container {
+    background-color: #1f1f23;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    width: 40px;
+    height: 40px;
+}
+
+h1 {
+    font-size: 23px;
+}
+
+.header-container a {
+    color: #f3f4f6;
+    text-decoration: none;
+}
+
+.page-container {
+    display: flex;
+}
+
+.sidebar-container {
+    background-color: #1f1f23;
+    width: 210px;
+    height: 100vh;
+    padding: 25px 15px;
+}
+
+.sidebar-container p {
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.sidebar-container .active {
+    background-color: #7c3aed;
+    border-radius: 8px;
+}
+
+.main-container {
+    flex: 1;
+    padding: 30px;
+}
+
+.profile-container {
+    background-color: #1f1f23;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-image {
+    background-color: #7c3aed;
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+}
+
+.profile-information h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.profile-information p {
+    color: #9ca3af;
+    margin-bottom: 10px;
+}
+
+.profile-information .artist-label {
+    color: #3b82f6;
+    font-size: 13px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.listen-button {
+    background-color: #7c3aed;
+    color: #f3f4f6;
+}
+
+.follow-button {
+    background-color: #9ca3af;
+    color: #121212;
+}
+
+.songs-container,
+.about-container {
+    margin-top: 30px;
+}
+
+.songs-container h2,
+.about-container h2 {
+    margin-bottom: 15px;
+}
+
+.song-list,
+.about-container p {
+    background-color: #1f1f23;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.song-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px;
+}
+
+.song-information {
+    flex: 1;
+}
+
+.song-information h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.song-information p {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.about-container p {
+    color: #9ca3af;
+}
