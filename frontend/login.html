@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Radar Musical</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="sign-in-area">
+            <img src="./images/login/logo_icon.svg">
+            <h1>Radar Musical</h1>
+            <p>Discover your favorite music style and local artists</p>
+
+            <form class="form-container" action="/api/v1/auth/login" method="post">
+                <label class="field-label" for="loginEmail">Email address</label>
+                <input class="field-input" id="loginEmail" type="email" placeholder="name@example.com">
+
+                <label class="field-label" for="password">Password</label>
+                <input class="field-input" id="password" type="password" placeholder="Enter password">
+
+                <button class="input-button" type="button">Sign In</button>
+            </form>
+        </div>
+        <div class="sign-up-area">
+            <p>Don't have an account? <a href=""> Sign up</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
