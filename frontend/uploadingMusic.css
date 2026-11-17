@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #121212;
+    color: #f3f4f6;
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.global-container {
+    background-color: #1f1f23;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 90vw;
+    height: 80vh;
+
+    border-radius: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+
+    p{
+        font-size: 32px;
+    }
+    
+    img {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+    }
+}
+
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    justify-content: space-between;
+}
+
+.form-container {
+    display: flex;
+    padding: 50px 40px;
+    gap: 40px;
+    flex: 1;
+}
+
+.rectangule-container {
+    background-color: #7c3aed;
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    box-sizing: border-box;
+
+    padding: 0 20px;
+
+}
+
+.field-image-input {
+    color: #f3f4f6;
+    max-width: 100%;
+}
+
+.field-image-input::file-selector-button {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+
+    border: none;
+    border-radius: 10px;
+
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+
+    background-color: #9ca3af;
+    color: #121212;
+
+    font-size: 18px;
+}
+
+.field-image-input::file-selector-button:hover {
+    background-color: #f3f4f6;
+}
+
+.upload-data-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 40px;
+    flex: 1;
+}
+
+.field-label {
+    margin-top: 30px;
+}
+
+.field-text-input {
+    background-color: #2a2a2e;
+    color: #9ca3af;
+    border: none;
+    outline: none;
+
+    height: 30px;
+    padding: 0 5px;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.publish-button {
+    background-color: #7c3aed;
+    color: #f3f4f6;
+}
+
+.publish-button:hover {
+    background-color: #3b82f6;
+}
+
+.back-button {
+    background-color: #9ca3af;
+    color: #121212;
+}
+
+.back-button:hover {
+    background-color: #f3f4f6;
+}
