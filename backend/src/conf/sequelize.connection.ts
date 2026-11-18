@@ -8,6 +8,7 @@ const {
   DB_HOST,
   DB_PASSWORD,
   DB_NAME,
+  DB_PORT,
   ENVIRONMENT,
 } = process.env;
 
@@ -17,6 +18,7 @@ export class SequelizeConnection {
   constructor() {
     this.sequelize = new Sequelize(DB_NAME!, DB_USER!, DB_PASSWORD!, {
       host: DB_HOST!,
+      port: Number(DB_PORT),
       logging: ENVIRONMENT === "PRODUCTION" ? false : console.log,
       dialect: "mysql",
     });
