@@ -3,9 +3,10 @@ POST http://localhost:3000/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "name": "TaniaGuitarrista",
-    "email": "TaniaG@gmail.com",
+    "name": "CrisBaterista",
+    "email": "CrisBat@gmail.com",
     "password": "1234",
+    "repeatPassword": "1234",
     "role": "artist"
 }
 
@@ -14,9 +15,8 @@ POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "TaniaG@gmail.com",
-    "password": "1234",
-    "role": "artist"
+    "email": "CrisBat@gmail.com",
+    "password": "1234"
 }
 
 ###get all artist
