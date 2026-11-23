@@ -1,29 +1,36 @@
 {
-  "name": "radar-musical-backend",
+  "name": "radar-musical-frontend",
   "version": "1.0.0",
-  "description": "Backend for Radar Musical project",
-  "main": "dist/app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage ",
     "test:watch": "vitest",
     "build": "npx tsc",
-    "start": "node ./dist/app.js",
+    "start": "node ./src/app.js",
     "dev": "npx tsx --watch ./src/app.ts"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mysql2": "^3.24.6",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.4",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.5.1",
-    "@vitest/coverage-v8": "^5.0.5",
-    "nodemon": "^3.1.14",
+    "@types/sequelize": "^4.28.20",
+    "@vitest/coverage-v8": "^3.1.4",
+    "nodemon": "^1.19.4",
     "tsx": "^4.23.13",
-    "typescript": "^7.0.2",
-    "vitest": "^5.0.5"
+    "typescript": "^7.0.2"
   }
 }
