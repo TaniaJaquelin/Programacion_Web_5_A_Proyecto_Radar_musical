@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { loginUser } from "./auth/services/auth.service";
+import LabelInput from "./components/molecules/LabelInput";
 
 function App() {
     //creating login hooks
@@ -8,12 +9,12 @@ function App() {
     const [password,setPassword] = useState("");
 
     //creating login events
-    const manageEmail = (event: React.ChangeEvent<HTMLInputElement>)=>{
-        setEmail(event.target.value);
+    const manageEmail = (inputText:string)=>{
+        setEmail(inputText);
     }
 
-    const managePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value)
+    const managePassword = (inputText:string) => {
+        setPassword(inputText);
     }
 
     const sendForm = async (event: React.SubmitEvent<HTMLFormElement>)=> {
@@ -36,17 +37,9 @@ function App() {
                         <form className="form-container"
                             onSubmit={sendForm}
                         >
-                            <label className="field-label">Email address</label>
-                            <input className="field-input" id="loginEmail" type="email" placeholder="name@example.com" 
-                                value={email}
-                                onChange={manageEmail}
-                            />
+                            <LabelInput labelText="Email adressed" inputType="email" placeHolder="name@example.com" value={email} fnOnChange={manageEmail}/>
 
-                            <label className="field-label">Password</label>
-                            <input className="field-input" id="password" type="password" placeholder="Enter password" 
-                                value={password}
-                                onChange={managePassword}
-                            />
+                            <LabelInput labelText="Password" inputType="password" placeHolder="*************" value={password} fnOnChange={managePassword}/>
 
                             <button className="input-button" type="submit">Sign In</button>
                         </form>
